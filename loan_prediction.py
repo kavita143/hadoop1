@@ -60,7 +60,7 @@ assembler = VectorAssembler(
     inputCols=[
         "age",
         "income",
-        "cibil_score",   # ⭐ KEY FEATURE
+        "cibil_score",
         "loan_amount",
         "loan_term",
         "gender_index",

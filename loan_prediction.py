@@ -40,11 +40,6 @@ data = label_model.transform(data)
 # -------------------------------
 # 5. HANDLE CATEGORICAL COLUMNS
 # -------------------------------
-# gender
-gender_indexer = StringIndexer(inputCol="gender", outputCol="gender_index")
-gender_model = gender_indexer.fit(data)
-data = gender_model.transform(data)
-
 # city
 city_indexer = StringIndexer(inputCol="city", outputCol="city_index")
 city_model = city_indexer.fit(data)
@@ -63,7 +58,6 @@ assembler = VectorAssembler(
         "cibil_score",
         "loan_amount",
         "loan_term",
-        "gender_index",
         "city_index"
     ],
     outputCol="features"
@@ -126,7 +120,6 @@ new_customer = spark.createDataFrame([
 ], ["age", "gender", "income", "city", "cibil_score", "loan_amount", "loan_term"])
 
 # Apply SAME transformations
-new_customer = gender_model.transform(new_customer)
 new_customer = city_model.transform(new_customer)
 new_customer = assembler.transform(new_customer)
 
